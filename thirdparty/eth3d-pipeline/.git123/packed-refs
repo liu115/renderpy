@@ -1,0 +1,3 @@
+# pack-refs with: peeled fully-peeled sorted 
+938c150fa152c6f68c651938030832430c04735a refs/remotes/origin/fix-scale-estimator
+e09275b39b30c9c59abf535b849fcc539dc03efd refs/remotes/origin/master
