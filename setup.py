@@ -132,7 +132,7 @@ setup(
     author_email="yuehcheng.liu@tum.de",
     description="Simple python rasterizer implemented by OpenGL and C++",
     long_description="",
-    ext_modules=[CMakeExtension("cmake_example")],
+    ext_modules=[CMakeExtension("renderpy")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
     extras_require={"test": ["pytest>=6.0"]},

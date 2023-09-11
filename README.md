@@ -5,7 +5,7 @@ Key features:
 - Headless OpenGL rendering
 - Output numpy.ndarray directly
 
-## Requirement
+## Requirements
 - cmake >= 3.22
 
 
@@ -17,7 +17,7 @@ pip install .
 ```
 
 
-### Common issue
+### Common issues
 
 If you encounter missing libstdc++.so.6 error in conda environment, try this:
 
@@ -26,7 +26,7 @@ Add this line to your .bashrc or .zshrc
 export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6
 ```
 
-## Useage
+## Usage
 
 ```python
 import renderpy
