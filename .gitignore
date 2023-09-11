@@ -1,0 +1,13 @@
+.vscode/*
+build/*
+__pycache__
+*.o
+*.pyc
+configs/*
+*.glsl
+*.ipynb
+
+
+*.egg-info/
+build/
+# thirdparty/eth3d-pipeline/*
