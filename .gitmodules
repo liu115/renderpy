@@ -2,3 +2,8 @@
 	path = pybind11
 	url = https://github.com/pybind/pybind11.git
 	branch = master
+
+
+[submodule "thirdparty/mLib"]
+	path = thirdparty/mLib
+	url = https://github.com/cy94/mLib.git
