@@ -166,7 +166,7 @@ template<typename _MatrixType, int _UpLo> class LLT
     RealScalar rcond() const
     {
       eigen_assert(m_isInitialized && "LLT is not initialized.");
-      eigen_assert(m_info == Success && "LLT failed because matrix appears to be negative");
+      eigen_assert(m_info == SuccessfulComputation && "LLT failed because matrix appears to be negative");
       return internal::rcond_estimate_helper(m_l1_norm, *this);
     }
 
@@ -185,7 +185,7 @@ template<typename _MatrixType, int _UpLo> class LLT
 
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the matrix.appears not to be positive definite.
       */
     ComputationInfo info() const
@@ -454,7 +454,7 @@ LLT<MatrixType,_UpLo>& LLT<MatrixType,_UpLo>::compute(const EigenBase<InputType>
 
   m_isInitialized = true;
   bool ok = Traits::inplace_decomposition(m_matrix);
-  m_info = ok ? Success : NumericalIssue;
+  m_info = ok ? SuccessfulComputation : NumericalIssue;
 
   return *this;
 }
@@ -474,7 +474,7 @@ LLT<_MatrixType,_UpLo> & LLT<_MatrixType,_UpLo>::rankUpdate(const VectorType& v,
   if(internal::llt_inplace<typename MatrixType::Scalar, UpLo>::rankUpdate(m_matrix,v,sigma)>=0)
     m_info = NumericalIssue;
   else
-    m_info = Success;
+    m_info = SuccessfulComputation;
 
   return *this;
 }

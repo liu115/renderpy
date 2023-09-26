@@ -214,7 +214,7 @@ template<typename _MatrixType> class ComplexEigenSolver
 
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful, \c NoConvergence otherwise.
+      * \returns \c SuccessfulComputation if computation was successful, \c NoConvergence otherwise.
       */
     ComputationInfo info() const
     {
@@ -269,7 +269,7 @@ ComplexEigenSolver<MatrixType>::compute(const EigenBase<InputType>& matrix, bool
   // The eigenvalues are on the diagonal of T.
   m_schur.compute(matrix.derived(), computeEigenvectors);
 
-  if(m_schur.info() == Success)
+  if(m_schur.info() == SuccessfulComputation)
   {
     m_eivalues = m_schur.matrixT().diagonal();
     if(computeEigenvectors)

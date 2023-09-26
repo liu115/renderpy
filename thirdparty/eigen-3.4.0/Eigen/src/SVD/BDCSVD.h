@@ -259,7 +259,7 @@ BDCSVD<MatrixType>& BDCSVD<MatrixType>::compute(const MatrixType& matrix, unsign
     JacobiSVD<MatrixType> jsvd(matrix,computationOptions);
     m_isInitialized = true;
     m_info = jsvd.info();
-    if (m_info == Success || m_info == NoConvergence) {
+    if (m_info == SuccessfulComputation || m_info == NoConvergence) {
       if(computeU()) m_matrixU = jsvd.matrixU();
       if(computeV()) m_matrixV = jsvd.matrixV();
       m_singularValues = jsvd.singularValues();
@@ -292,7 +292,7 @@ BDCSVD<MatrixType>& BDCSVD<MatrixType>::compute(const MatrixType& matrix, unsign
   m_computed.topRows(m_diagSize) = bid.bidiagonal().toDenseMatrix().transpose();
   m_computed.template bottomRows<1>().setZero();
   divide(0, m_diagSize - 1, 0, 0, 0);
-  if (m_info != Success && m_info != NoConvergence) {
+  if (m_info != SuccessfulComputation && m_info != NoConvergence) {
     m_isInitialized = true;
     return *this;
   }
@@ -429,7 +429,7 @@ void BDCSVD<MatrixType>::divide(Eigen::Index firstCol, Eigen::Index lastCol, Eig
     // FIXME this line involves temporaries
     JacobiSVD<MatrixXr> b(m_computed.block(firstCol, firstCol, n + 1, n), ComputeFullU | (m_compV ? ComputeFullV : 0));
     m_info = b.info();
-    if (m_info != Success && m_info != NoConvergence) return;
+    if (m_info != SuccessfulComputation && m_info != NoConvergence) return;
     if (m_compU)
       m_naiveU.block(firstCol, firstCol, n + 1, n + 1).real() = b.matrixU();
     else 
@@ -449,9 +449,9 @@ void BDCSVD<MatrixType>::divide(Eigen::Index firstCol, Eigen::Index lastCol, Eig
   // and the divide of the right submatrice reads one column of the left submatrice. That's why we need to treat the 
   // right submatrix before the left one. 
   divide(k + 1 + firstCol, lastCol, k + 1 + firstRowW, k + 1 + firstColW, shift);
-  if (m_info != Success && m_info != NoConvergence) return;
+  if (m_info != SuccessfulComputation && m_info != NoConvergence) return;
   divide(firstCol, k - 1 + firstCol, firstRowW, firstColW + 1, shift + 1);
-  if (m_info != Success && m_info != NoConvergence) return;
+  if (m_info != SuccessfulComputation && m_info != NoConvergence) return;
 
   if (m_compU)
   {

@@ -217,7 +217,7 @@ public:
 
     RowMajorWrapper row_mat(matrix());
     internal::conjugate_gradient(SelfAdjointWrapper(row_mat), b, x, Base::m_preconditioner, m_iterations, m_error);
-    m_info = m_error <= Base::m_tolerance ? Success : NoConvergence;
+    m_info = m_error <= Base::m_tolerance ? SuccessfulComputation : NoConvergence;
   }
 
 protected:

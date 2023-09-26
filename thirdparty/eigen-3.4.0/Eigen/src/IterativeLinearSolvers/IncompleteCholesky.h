@@ -92,7 +92,7 @@ class IncompleteCholesky : public SparseSolverBase<IncompleteCholesky<Scalar,_Up
       * It triggers an assertion if \c *this has not been initialized through the respective constructor,
       * or a call to compute() or analyzePattern().
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the matrix appears to be negative.
       */
     ComputationInfo info() const
@@ -118,7 +118,7 @@ class IncompleteCholesky : public SparseSolverBase<IncompleteCholesky<Scalar,_Up
       m_L.resize(mat.rows(), mat.cols());
       m_analysisIsOk = true;
       m_isInitialized = true;
-      m_info = Success;
+      m_info = SuccessfulComputation;
     }
 
     /** \brief Performs the numerical factorization of the input matrix \a mat
@@ -364,9 +364,9 @@ void IncompleteCholesky<Scalar,_UpLo, OrderingType>::factorize(const _MatrixType
     if(j==n)
     {
       m_factorizationIsOk = true;
-      m_info = Success;
+      m_info = SuccessfulComputation;
     }
-  } while(m_info!=Success);
+  } while(m_info!=SuccessfulComputation);
 }
 
 template<typename Scalar, int _UpLo, typename OrderingType>

@@ -203,7 +203,7 @@ class PastixBase : public SparseSolverBase<Derived>
     
      /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the PaStiX reports a problem
       *          \c InvalidInput if the input matrix is invalid
       *
@@ -286,7 +286,7 @@ void PastixBase<Derived>::init()
     m_initisOk = false;
   }
   else { 
-    m_info = Success;
+    m_info = SuccessfulComputation;
     m_initisOk = true;
   }
 }
@@ -329,7 +329,7 @@ void PastixBase<Derived>::analyzePattern(ColSpMatrix& mat)
   }
   else
   { 
-    m_info = Success;
+    m_info = SuccessfulComputation;
     m_analysisIsOk = true;
   }
 }
@@ -355,7 +355,7 @@ void PastixBase<Derived>::factorize(ColSpMatrix& mat)
   }
   else
   {
-    m_info = Success;
+    m_info = SuccessfulComputation;
     m_factorizationIsOk = true;
     m_isInitialized = true;
   }
@@ -382,7 +382,7 @@ bool PastixBase<Base>::_solve_impl(const MatrixBase<Rhs> &b, MatrixBase<Dest> &x
   }
   
   // Check the returned error
-  m_info = m_iparm(IPARM_ERROR_NUMBER)==0 ? Success : NumericalIssue;
+  m_info = m_iparm(IPARM_ERROR_NUMBER)==0 ? SuccessfulComputation : NumericalIssue;
   
   return m_iparm(IPARM_ERROR_NUMBER)==0;
 }

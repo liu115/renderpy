@@ -352,7 +352,7 @@ class SuperLUBase : public SparseSolverBase<Derived>
     
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the matrix.appears to be negative.
       */
     ComputationInfo info() const
@@ -377,7 +377,7 @@ class SuperLUBase : public SparseSolverBase<Derived>
     void analyzePattern(const MatrixType& /*matrix*/)
     {
       m_isInitialized = true;
-      m_info = Success;
+      m_info = SuccessfulComputation;
       m_analysisIsOk = true;
       m_factorizationIsOk = false;
     }
@@ -640,7 +640,7 @@ void SuperLU<MatrixType>::factorize(const MatrixType& a)
   m_extractedDataAreDirty = true;
 
   // FIXME how to better check for errors ???
-  m_info = info == 0 ? Success : NumericalIssue;
+  m_info = info == 0 ? SuccessfulComputation : NumericalIssue;
   m_factorizationIsOk = true;
 }
 
@@ -692,7 +692,7 @@ void SuperLU<MatrixType>::_solve_impl(const MatrixBase<Rhs> &b, MatrixBase<Dest>
   if(x.derived().data() != x_ref.data())
     x = x_ref;
   
-  m_info = info==0 ? Success : NumericalIssue;
+  m_info = info==0 ? SuccessfulComputation : NumericalIssue;
 }
 
 // the code of this extractData() function has been adapted from the SuperLU's Matlab support code,
@@ -962,7 +962,7 @@ void SuperILU<MatrixType>::factorize(const MatrixType& a)
   StatFree(&m_sluStat);
 
   // FIXME how to better check for errors ???
-  m_info = info == 0 ? Success : NumericalIssue;
+  m_info = info == 0 ? SuccessfulComputation : NumericalIssue;
   m_factorizationIsOk = true;
 }
 
@@ -1014,7 +1014,7 @@ void SuperILU<MatrixType>::_solve_impl(const MatrixBase<Rhs> &b, MatrixBase<Dest
   if(x.derived().data() != x_ref.data())
     x = x_ref;
 
-  m_info = info==0 ? Success : NumericalIssue;
+  m_info = info==0 ? SuccessfulComputation : NumericalIssue;
 }
 #endif
 

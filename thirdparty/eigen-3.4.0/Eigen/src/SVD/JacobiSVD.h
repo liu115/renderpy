@@ -626,7 +626,7 @@ void JacobiSVD<MatrixType, QRPreconditioner>::allocate(Eigen::Index rows, Eigen:
 
   m_rows = rows;
   m_cols = cols;
-  m_info = Success;
+  m_info = SuccessfulComputation;
   m_isInitialized = false;
   m_isAllocated = true;
   m_computationOptions = computationOptions;

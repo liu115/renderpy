@@ -56,7 +56,7 @@ SelfAdjointEigenSolver<Matrix<EIGTYPE, Dynamic, Dynamic, EIGCOLROW> >::compute(c
   { \
     m_eivalues.coeffRef(0,0) = numext::real(m_eivec.coeff(0,0)); \
     if(computeEigenvectors) m_eivec.setOnes(n,n); \
-    m_info = Success; \
+    m_info = SuccessfulComputation; \
     m_isInitialized = true; \
     m_eigenvectorsOk = computeEigenvectors; \
     return *this; \
@@ -67,7 +67,7 @@ SelfAdjointEigenSolver<Matrix<EIGTYPE, Dynamic, Dynamic, EIGCOLROW> >::compute(c
   jobz = computeEigenvectors ? 'V' : 'N'; \
 \
   info = LAPACKE_##LAPACKE_NAME( LAPACK_COL_MAJOR, jobz, uplo, n, (LAPACKE_TYPE*)m_eivec.data(), lda, (LAPACKE_RTYPE*)m_eivalues.data() ); \
-  m_info = (info==0) ? Success : NoConvergence; \
+  m_info = (info==0) ? SuccessfulComputation : NoConvergence; \
   m_isInitialized = true; \
   m_eigenvectorsOk = computeEigenvectors; \
   return *this; \

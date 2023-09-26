@@ -199,7 +199,7 @@ public:
     bool ret = internal::bicgstab(matrix(), b, x, Base::m_preconditioner, m_iterations, m_error);
 
     m_info = (!ret) ? NumericalIssue
-           : m_error <= Base::m_tolerance ? Success
+           : m_error <= Base::m_tolerance ? SuccessfulComputation
            : NoConvergence;
   }
 

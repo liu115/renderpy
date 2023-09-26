@@ -190,7 +190,7 @@ template<typename _MatrixType> class RealSchur
     RealSchur& computeFromHessenberg(const HessMatrixType& matrixH, const OrthMatrixType& matrixQ,  bool computeU);
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful, \c NoConvergence otherwise.
+      * \returns \c SuccessfulComputation if computation was successful, \c NoConvergence otherwise.
       */
     ComputationInfo info() const
     {
@@ -261,7 +261,7 @@ RealSchur<MatrixType>& RealSchur<MatrixType>::compute(const EigenBase<InputType>
     m_matT.setZero(matrix.rows(),matrix.cols());
     if(computeU)
       m_matU.setIdentity(matrix.rows(),matrix.cols());
-    m_info = Success;
+    m_info = SuccessfulComputation;
     m_isInitialized = true;
     m_matUisUptodate = computeU;
     return *this;
@@ -348,7 +348,7 @@ RealSchur<MatrixType>& RealSchur<MatrixType>::computeFromHessenberg(const HessMa
     }
   }
   if(totalIter <= maxIters)
-    m_info = Success;
+    m_info = SuccessfulComputation;
   else
     m_info = NoConvergence;
 

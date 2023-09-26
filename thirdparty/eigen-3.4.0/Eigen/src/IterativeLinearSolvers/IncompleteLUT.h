@@ -136,7 +136,7 @@ class IncompleteLUT : public SparseSolverBase<IncompleteLUT<_Scalar, _StorageInd
 
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the matrix.appears to be negative.
       */
     ComputationInfo info() const
@@ -445,7 +445,7 @@ void IncompleteLUT<Scalar,StorageIndex>::factorize(const _MatrixType& amat)
   m_lu.makeCompressed();
 
   m_factorizationIsOk = true;
-  m_info = Success;
+  m_info = SuccessfulComputation;
 }
 
 } // end namespace Eigen

@@ -141,7 +141,7 @@ class PardisoImpl : public SparseSolverBase<Derived>
   
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the matrix appears to be negative.
       */
     ComputationInfo info() const
@@ -234,7 +234,7 @@ class PardisoImpl : public SparseSolverBase<Derived>
       switch(error)
       {
         case 0:
-          m_info = Success;
+          m_info = SuccessfulComputation;
           break;
         case -4:
         case -7:

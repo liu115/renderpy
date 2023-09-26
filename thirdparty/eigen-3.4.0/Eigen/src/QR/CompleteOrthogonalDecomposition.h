@@ -358,14 +358,14 @@ template <typename _MatrixType> class CompleteOrthogonalDecomposition
   /** \brief Reports whether the complete orthogonal decomposition was
    * successful.
    *
-   * \note This function always returns \c Success. It is provided for
+   * \note This function always returns \c SuccessfulComputation. It is provided for
    * compatibility
    * with other factorization routines.
-   * \returns \c Success
+   * \returns \c SuccessfulComputation
    */
   ComputationInfo info() const {
     eigen_assert(m_cpqr.m_isInitialized && "Decomposition is not initialized.");
-    return Success;
+    return SuccessfulComputation;
   }
 
 #ifndef EIGEN_PARSED_BY_DOXYGEN

@@ -100,7 +100,7 @@ class DiagonalPreconditioner
       return Solve<DiagonalPreconditioner, Rhs>(*this, b.derived());
     }
 
-    ComputationInfo info() { return Success; }
+    ComputationInfo info() { return SuccessfulComputation; }
 
   protected:
     Vector m_invdiag;
@@ -185,7 +185,7 @@ class LeastSquareDiagonalPreconditioner : public DiagonalPreconditioner<_Scalar>
       return factorize(mat);
     }
 
-    ComputationInfo info() { return Success; }
+    ComputationInfo info() { return SuccessfulComputation; }
 
   protected:
 };
@@ -218,7 +218,7 @@ class IdentityPreconditioner
     template<typename Rhs>
     inline const Rhs& solve(const Rhs& b) const { return b; }
 
-    ComputationInfo info() { return Success; }
+    ComputationInfo info() { return SuccessfulComputation; }
 };
 
 } // end namespace Eigen

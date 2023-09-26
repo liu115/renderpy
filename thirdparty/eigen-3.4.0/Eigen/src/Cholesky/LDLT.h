@@ -251,7 +251,7 @@ template<typename _MatrixType, int _UpLo> class LDLT
 
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the factorization failed because of a zero pivot.
       */
     ComputationInfo info() const
@@ -523,7 +523,7 @@ LDLT<MatrixType,_UpLo>& LDLT<MatrixType,_UpLo>::compute(const EigenBase<InputTyp
   m_temporary.resize(size);
   m_sign = internal::ZeroSign;
 
-  m_info = internal::ldlt_inplace<UpLo>::unblocked(m_matrix, m_transpositions, m_temporary, m_sign) ? Success : NumericalIssue;
+  m_info = internal::ldlt_inplace<UpLo>::unblocked(m_matrix, m_transpositions, m_temporary, m_sign) ? SuccessfulComputation : NumericalIssue;
 
   m_isInitialized = true;
   return *this;

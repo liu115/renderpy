@@ -106,7 +106,7 @@ class KLU : public SparseSolverBase<KLU<_MatrixType> >
 
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the matrix.appears to be negative.
       */
     ComputationInfo info() const
@@ -242,7 +242,7 @@ class KLU : public SparseSolverBase<KLU<_MatrixType> >
                                      &m_common);
       if (m_symbolic) {
          m_isInitialized = true;
-         m_info = Success;
+         m_info = SuccessfulComputation;
          m_analysisIsOk = true;
          m_extractedDataAreDirty = true;
       }
@@ -255,7 +255,7 @@ class KLU : public SparseSolverBase<KLU<_MatrixType> >
                                     m_symbolic, &m_common, Scalar());
 
 
-      m_info = m_numeric ? Success : NumericalIssue;
+      m_info = m_numeric ? SuccessfulComputation : NumericalIssue;
       m_factorizationIsOk = m_numeric ? 1 : 0;
       m_extractedDataAreDirty = true;
     }
@@ -349,7 +349,7 @@ bool KLU<MatrixType>::_solve_impl(const MatrixBase<BDerived> &b, MatrixBase<XDer
   x = b;
   int info = klu_solve(m_symbolic, m_numeric, b.rows(), rhsCols, x.const_cast_derived().data(), const_cast<klu_common*>(&m_common), Scalar());
 
-  m_info = info!=0 ? Success : NumericalIssue;
+  m_info = info!=0 ? SuccessfulComputation : NumericalIssue;
   return true;
 }
 

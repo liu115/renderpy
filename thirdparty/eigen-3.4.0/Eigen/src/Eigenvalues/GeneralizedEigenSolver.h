@@ -297,7 +297,7 @@ GeneralizedEigenSolver<MatrixType>::compute(const MatrixType& A, const MatrixTyp
   // Reduce to generalized real Schur form:
   // A = Q S Z and B = Q T Z
   m_realQZ.compute(A, B, computeEigenvectors);
-  if (m_realQZ.info() == Success)
+  if (m_realQZ.info() == SuccessfulComputation)
   {
     // Resize storage
     m_alphas.resize(size);

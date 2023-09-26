@@ -164,7 +164,7 @@ namespace Eigen {
 
       /** \brief Reports whether previous computation was successful.
        *
-       * \returns \c Success if computation was successful, \c NoConvergence otherwise.
+       * \returns \c SuccessfulComputation if computation was successful, \c NoConvergence otherwise.
        */
       ComputationInfo info() const
       {
@@ -617,13 +617,13 @@ namespace Eigen {
         }
       }
       // check if we converged before reaching iterations limit
-      m_info = (local_iter<m_maxIters) ? Success : NoConvergence;
+      m_info = (local_iter<m_maxIters) ? SuccessfulComputation : NoConvergence;
 
       // For each non triangular 2x2 diagonal block of S,
       //    reduce the respective 2x2 diagonal block of T to positive diagonal form using 2x2 SVD.
       // This step is not mandatory for QZ, but it does help further extraction of eigenvalues/eigenvectors,
       // and is in par with Lapack/Matlab QZ.
-      if(m_info==Success)
+      if(m_info==SuccessfulComputation)
       {
         for(Index i=0; i<dim-1; ++i)
         {

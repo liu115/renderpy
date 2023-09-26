@@ -53,7 +53,7 @@ ComplexSchur<Matrix<EIGTYPE, Dynamic, Dynamic, EIGCOLROW> >::compute(const Eigen
   { \
     m_matT = matrix.derived().template cast<ComplexScalar>(); \
     if(computeU)  m_matU = ComplexMatrixType::Identity(1,1); \
-      m_info = Success; \
+      m_info = SuccessfulComputation; \
       m_isInitialized = true; \
       m_matUisUptodate = computeU; \
       return *this; \
@@ -71,7 +71,7 @@ ComplexSchur<Matrix<EIGTYPE, Dynamic, Dynamic, EIGCOLROW> >::compute(const Eigen
   w.resize(n, 1);\
   info = LAPACKE_##LAPACKE_PREFIX##gees( matrix_order, jobvs, sort, select, n, (LAPACKE_TYPE*)m_matT.data(), lda, &sdim, (LAPACKE_TYPE*)w.data(), (LAPACKE_TYPE*)m_matU.data(), ldvs ); \
   if(info == 0) \
-    m_info = Success; \
+    m_info = SuccessfulComputation; \
   else \
     m_info = NoConvergence; \
 \

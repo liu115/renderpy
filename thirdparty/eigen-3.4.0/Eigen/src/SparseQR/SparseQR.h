@@ -223,7 +223,7 @@ class SparseQR : public SparseSolverBase<SparseQR<_MatrixType,_OrderingType> >
       if (m_perm_c.size())  dest = colsPermutation() * y.topRows(cols());
       else                  dest = y.topRows(cols());
       
-      m_info = Success;
+      m_info = SuccessfulComputation;
       return true;
     }
 
@@ -259,7 +259,7 @@ class SparseQR : public SparseSolverBase<SparseQR<_MatrixType,_OrderingType> >
     
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the QR factorization reports a numerical problem
       *          \c InvalidInput if the input matrix is invalid
       *
@@ -606,7 +606,7 @@ void SparseQR<MatrixType,OrderingType>::factorize(const MatrixType& mat)
   
   m_isInitialized = true; 
   m_factorizationIsok = true;
-  m_info = Success;
+  m_info = SuccessfulComputation;
 }
 
 template <typename SparseQRType, typename Derived>

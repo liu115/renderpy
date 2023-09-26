@@ -188,7 +188,7 @@ public:
     m_error = Base::m_tolerance;
 
     internal::least_square_conjugate_gradient(matrix(), b, x, Base::m_preconditioner, m_iterations, m_error);
-    m_info = m_error <= Base::m_tolerance ? Success : NoConvergence;
+    m_info = m_error <= Base::m_tolerance ? SuccessfulComputation : NoConvergence;
   }
 
 };

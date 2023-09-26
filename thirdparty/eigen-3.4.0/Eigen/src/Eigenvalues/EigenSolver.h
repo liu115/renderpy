@@ -277,7 +277,7 @@ template<typename _MatrixType> class EigenSolver
     template<typename InputType>
     EigenSolver& compute(const EigenBase<InputType>& matrix, bool computeEigenvectors = true);
 
-    /** \returns NumericalIssue if the input contains INF or NaN values or overflow occurred. Returns Success otherwise. */
+    /** \returns NumericalIssue if the input contains INF or NaN values or overflow occurred. Returns SuccessfulComputation otherwise. */
     ComputationInfo info() const
     {
       eigen_assert(m_isInitialized && "EigenSolver is not initialized.");
@@ -390,7 +390,7 @@ EigenSolver<MatrixType>::compute(const EigenBase<InputType>& matrix, bool comput
   
   m_info = m_realSchur.info();
 
-  if (m_info == Success)
+  if (m_info == SuccessfulComputation)
   {
     m_matT = m_realSchur.matrixT();
     if (computeEigenvectors)

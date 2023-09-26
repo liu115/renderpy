@@ -57,7 +57,7 @@ RealSchur<Matrix<EIGTYPE, Dynamic, Dynamic, EIGCOLROW> >::compute(const EigenBas
   wr.resize(n, 1); wi.resize(n, 1); \
   info = LAPACKE_##LAPACKE_PREFIX##gees( matrix_order, jobvs, sort, select, n, (LAPACKE_TYPE*)m_matT.data(), lda, &sdim, (LAPACKE_TYPE*)wr.data(), (LAPACKE_TYPE*)wi.data(), (LAPACKE_TYPE*)m_matU.data(), ldvs ); \
   if(info == 0) \
-    m_info = Success; \
+    m_info = SuccessfulComputation; \
   else \
     m_info = NoConvergence; \
 \

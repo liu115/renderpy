@@ -45,3 +45,10 @@ near = 0.05
 far = 20.0
 rgb, depth, vert_indices = render_engine.renderAll(world_to_camera, near, far)
 ```
+
+
+## Other notes
+
+Currently, the `thirdparty/eigen-3.4.0/Eigen` has been modified:
+*  MACRO Success is replaced with SuccessfulComputation to avoid conflict with X.h (X11)
+* See also https://eigen.tuxfamily.org/bz/show_bug.cgi?id=253

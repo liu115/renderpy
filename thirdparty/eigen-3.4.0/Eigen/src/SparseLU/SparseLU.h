@@ -46,7 +46,7 @@ public:
   bool _solve_impl(const MatrixBase<Rhs> &B, MatrixBase<Dest> &X_base) const
   {
     Dest& X(X_base.derived());
-    eigen_assert(m_sparseLU->info() == Success && "The matrix should be factorized first");
+    eigen_assert(m_sparseLU->info() == SuccessfulComputation && "The matrix should be factorized first");
     EIGEN_STATIC_ASSERT((Dest::Flags&RowMajorBit)==0,
                         THIS_METHOD_IS_ONLY_FOR_COLUMN_MAJOR_MATRICES);
 
@@ -290,7 +290,7 @@ class SparseLU : public SparseSolverBase<SparseLU<_MatrixType,_OrderingType> >, 
     
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the LU factorization reports a problem, zero diagonal for instance
       *          \c InvalidInput if the input matrix is invalid
       *
@@ -791,7 +791,7 @@ void SparseLU<MatrixType, OrderingType>::factorize(const MatrixType& matrix)
   // Create the column major upper sparse matrix  U; 
   new (&m_Ustore) MappedSparseMatrix<Scalar, ColMajor, StorageIndex> ( m, n, m_nnzU, m_glu.xusub.data(), m_glu.usub.data(), m_glu.ucol.data() );
   
-  m_info = Success;
+  m_info = SuccessfulComputation;
   m_factorizationIsOk = true;
 }
 

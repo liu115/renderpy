@@ -232,7 +232,7 @@ class CholmodBase : public SparseSolverBase<Derived>
   public:
 
     CholmodBase()
-      : m_cholmodFactor(0), m_info(Success), m_factorizationIsOk(false), m_analysisIsOk(false)
+      : m_cholmodFactor(0), m_info(SuccessfulComputation), m_factorizationIsOk(false), m_analysisIsOk(false)
     {
       EIGEN_STATIC_ASSERT((internal::is_same<double,RealScalar>::value), CHOLMOD_SUPPORTS_DOUBLE_PRECISION_ONLY);
       m_shiftOffset[0] = m_shiftOffset[1] = 0.0;
@@ -240,7 +240,7 @@ class CholmodBase : public SparseSolverBase<Derived>
     }
 
     explicit CholmodBase(const MatrixType& matrix)
-      : m_cholmodFactor(0), m_info(Success), m_factorizationIsOk(false), m_analysisIsOk(false)
+      : m_cholmodFactor(0), m_info(SuccessfulComputation), m_factorizationIsOk(false), m_analysisIsOk(false)
     {
       EIGEN_STATIC_ASSERT((internal::is_same<double,RealScalar>::value), CHOLMOD_SUPPORTS_DOUBLE_PRECISION_ONLY);
       m_shiftOffset[0] = m_shiftOffset[1] = 0.0;
@@ -260,7 +260,7 @@ class CholmodBase : public SparseSolverBase<Derived>
 
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the matrix.appears to be negative.
       */
     ComputationInfo info() const
@@ -294,7 +294,7 @@ class CholmodBase : public SparseSolverBase<Derived>
       m_cholmodFactor = internal::cm_analyze<StorageIndex>(A, m_cholmod);
 
       this->m_isInitialized = true;
-      this->m_info = Success;
+      this->m_info = SuccessfulComputation;
       m_analysisIsOk = true;
       m_factorizationIsOk = false;
     }
@@ -312,7 +312,7 @@ class CholmodBase : public SparseSolverBase<Derived>
       internal::cm_factorize_p<StorageIndex>(&A, m_shiftOffset, 0, 0, m_cholmodFactor, m_cholmod);
 
       // If the factorization failed, minor is the column at which it did. On success minor == n.
-      this->m_info = (m_cholmodFactor->minor == m_cholmodFactor->n ? Success : NumericalIssue);
+      this->m_info = (m_cholmodFactor->minor == m_cholmodFactor->n ? SuccessfulComputation : NumericalIssue);
       m_factorizationIsOk = true;
     }
 

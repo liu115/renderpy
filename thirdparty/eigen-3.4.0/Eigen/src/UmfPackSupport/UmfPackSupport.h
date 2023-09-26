@@ -337,7 +337,7 @@ class UmfPackLU : public SparseSolverBase<UmfPackLU<_MatrixType> >
 
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the matrix.appears to be negative.
       */
     ComputationInfo info() const
@@ -509,7 +509,7 @@ class UmfPackLU : public SparseSolverBase<UmfPackLU<_MatrixType> >
                                           &m_symbolic, m_control.data(), m_umfpackInfo.data());
 
       m_isInitialized = true;
-      m_info = m_fact_errorCode ? InvalidInput : Success;
+      m_info = m_fact_errorCode ? InvalidInput : SuccessfulComputation;
       m_analysisIsOk = true;
       m_factorizationIsOk = false;
       m_extractedDataAreDirty = true;
@@ -521,7 +521,7 @@ class UmfPackLU : public SparseSolverBase<UmfPackLU<_MatrixType> >
       m_fact_errorCode = umfpack_numeric(mp_matrix.outerIndexPtr(), mp_matrix.innerIndexPtr(), mp_matrix.valuePtr(),
                                          m_symbolic, &m_numeric, m_control.data(), m_umfpackInfo.data());
 
-      m_info = m_fact_errorCode == UMFPACK_OK ? Success : NumericalIssue;
+      m_info = m_fact_errorCode == UMFPACK_OK ? SuccessfulComputation : NumericalIssue;
       m_factorizationIsOk = true;
       m_extractedDataAreDirty = true;
     }

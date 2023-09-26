@@ -355,7 +355,7 @@ template<typename _MatrixType> class SelfAdjointEigenSolver
 
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful, \c NoConvergence otherwise.
+      * \returns \c SuccessfulComputation if computation was successful, \c NoConvergence otherwise.
       */
     EIGEN_DEVICE_FUNC
     ComputationInfo info() const
@@ -438,7 +438,7 @@ SelfAdjointEigenSolver<MatrixType>& SelfAdjointEigenSolver<MatrixType>
     m_eivalues.coeffRef(0,0) = numext::real(m_eivec.coeff(0,0));
     if(computeEigenvectors)
       m_eivec.setOnes(n,n);
-    m_info = Success;
+    m_info = SuccessfulComputation;
     m_isInitialized = true;
     m_eigenvectorsOk = computeEigenvectors;
     return *this;
@@ -497,7 +497,7 @@ namespace internal {
   * \param[in] maxIterations : the maximum number of iterations
   * \param[in] computeEigenvectors : whether the eigenvectors have to be computed or not
   * \param[out] eivec : The matrix to store the eigenvectors if computeEigenvectors==true. Must be allocated on input.
-  * \returns \c Success or \c NoConvergence
+  * \returns \c SuccessfulComputation or \c NoConvergence
   */
 template<typename MatrixType, typename DiagType, typename SubDiagType>
 EIGEN_DEVICE_FUNC
@@ -548,14 +548,14 @@ ComputationInfo computeFromTridiagonal_impl(DiagType& diag, SubDiagType& subdiag
     internal::tridiagonal_qr_step<MatrixType::Flags&RowMajorBit ? RowMajor : ColMajor>(diag.data(), subdiag.data(), start, end, computeEigenvectors ? eivec.data() : (Scalar*)0, n);
   }
   if (iter <= maxIterations * n)
-    info = Success;
+    info = SuccessfulComputation;
   else
     info = NoConvergence;
 
   // Sort eigenvalues and corresponding vectors.
   // TODO make the sort optional ?
   // TODO use a better sort algorithm !!
-  if (info == Success)
+  if (info == SuccessfulComputation)
   {
     for (Index i = 0; i < n-1; ++i)
     {
@@ -730,7 +730,7 @@ template<typename SolverType> struct direct_selfadjoint_eigenvalues<SolverType,3
     eivals *= scale;
     eivals.array() += shift;
     
-    solver.m_info = Success;
+    solver.m_info = SuccessfulComputation;
     solver.m_isInitialized = true;
     solver.m_eigenvectorsOk = computeEigenvectors;
   }
@@ -814,7 +814,7 @@ struct direct_selfadjoint_eigenvalues<SolverType,2,false>
     eivals *= scale;
     eivals.array() += shift;
 
-    solver.m_info = Success;
+    solver.m_info = SuccessfulComputation;
     solver.m_isInitialized = true;
     solver.m_eigenvectorsOk = computeEigenvectors;
   }

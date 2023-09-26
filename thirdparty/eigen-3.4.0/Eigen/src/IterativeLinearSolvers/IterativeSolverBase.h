@@ -322,7 +322,7 @@ public:
     return SolveWithGuess<Derived, Rhs, Guess>(derived(), b.derived(), x0);
   }
 
-  /** \returns Success if the iterations converged, and NoConvergence otherwise. */
+  /** \returns SuccessfulComputation if the iterations converged, and NoConvergence otherwise. */
   ComputationInfo info() const
   {
     eigen_assert(m_isInitialized && "IterativeSolverBase is not initialized.");
@@ -344,7 +344,7 @@ public:
     // We do not directly fill dest because sparse expressions have to be free of aliasing issue.
     // For non square least-square problems, b and dest might not have the same size whereas they might alias each-other.
     typename DestDerived::PlainObject tmp(cols(),rhsCols);
-    ComputationInfo global_info = Success;
+    ComputationInfo global_info = SuccessfulComputation;
     for(Index k=0; k<rhsCols; ++k)
     {
       tb = b.col(k);
@@ -371,7 +371,7 @@ public:
 
     Index rhsCols = b.cols();
     DestDerived& dest(aDest.derived());
-    ComputationInfo global_info = Success;
+    ComputationInfo global_info = SuccessfulComputation;
     for(Index k=0; k<rhsCols; ++k)
     {
       typename DestDerived::ColXpr xk(dest,k);

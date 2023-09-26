@@ -154,7 +154,7 @@ class SPQR : public SparseSolverBase<SPQR<_MatrixType> >
         m_isInitialized = false;
         return;
       }
-      m_info = Success;
+      m_info = SuccessfulComputation;
       m_isInitialized = true;
       m_isRUpToDate = false;
     }
@@ -193,7 +193,7 @@ class SPQR : public SparseSolverBase<SPQR<_MatrixType> >
 //       y.bottomRows(y.rows()-rk).setZero();
 //       dest = colsPermutation() * y.topRows(cols());
       
-      m_info = Success;
+      m_info = SuccessfulComputation;
     }
     
     /** \returns the sparse triangular factor R. It is a sparse matrix
@@ -242,7 +242,7 @@ class SPQR : public SparseSolverBase<SPQR<_MatrixType> >
     
     /** \brief Reports whether previous computation was successful.
       *
-      * \returns \c Success if computation was successful,
+      * \returns \c SuccessfulComputation if computation was successful,
       *          \c NumericalIssue if the sparse QR can not be computed
       */
     ComputationInfo info() const
