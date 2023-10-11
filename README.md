@@ -10,7 +10,8 @@ Key features:
 
 
 ## Install
-```
+```bash
+git clone --recursive https://github.com/liu115/renderpy    # clone with submodules
 conda create -n renderpy python=3.9
 conda activate renderpy
 pip install .
@@ -42,13 +43,16 @@ rgb, depth, vert_indices = render_engine.renderAll(world_to_camera, near, far)
 ### Missing Dependencies
 If some dependencies are missing during build, you can install them by:
 ```bash
+# Build tools
 apt-get install build-essential cmake git
+# OpenGL related
 apt-get install libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxext-dev
+# OpenCV
 apt-get install libopencv-dev
 apt-get install libboost-all-dev    # for mLib
 ```
 
-### Missing libstdc++.so.6
+### Version `GLIBCXX_3.4.30' not found
 If you encounter missing libstdc++.so.6 error in conda environment, try this:
 
 Add this line to your .bashrc or .zshrc
