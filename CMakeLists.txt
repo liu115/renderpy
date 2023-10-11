@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.22)
-project(project_name1)
+cmake_minimum_required(VERSION 3.16)
+project(renderpy)
 set(CMAKE_CXX_STANDARD 17)
 
 
@@ -74,12 +74,12 @@ set(ALL_LIBS
 )
 
 set(ALL_SRC
-    src/mesh_utils/mesh.cpp
+    # src/mesh_utils/mesh.cpp
     src/opengl/egl.cpp
     src/opengl/opengl.cpp
     src/opt/image.cpp
-    src/opt/optimizer.cpp
-    src/opt/evaluate.cpp
+    # src/opt/optimizer.cpp
+    # src/opt/evaluate.cpp
 
     thirdparty/eth3d-pipeline/src/camera/camera_base.cc
     thirdparty/eth3d-pipeline/src/camera/camera_thin_prism.cc

@@ -6,7 +6,7 @@ Key features:
 - Output numpy.ndarray directly
 
 ## Requirements
-- cmake >= 3.22
+- cmake >= 3.16
 
 
 ## Install
@@ -16,15 +16,6 @@ conda activate renderpy
 pip install .
 ```
 
-
-### Common issues
-
-If you encounter missing libstdc++.so.6 error in conda environment, try this:
-
-Add this line to your .bashrc or .zshrc
-```
-export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6
-```
 
 ## Usage
 
@@ -39,13 +30,31 @@ render_engine.setupCamera(
     height, width,
     fx, fy, cx, cy,
     camera_model,
-    params      # Distortion parameters [k1, k2, k3, k4] or [k1, k2, p1, p2]
+    params,      # Distortion parameters np.array([k1, k2, k3, k4]) or np.array([k1, k2, p1, p2])
 )
 near = 0.05
 far = 20.0
 rgb, depth, vert_indices = render_engine.renderAll(world_to_camera, near, far)
 ```
 
+## Common issues
+
+### Missing Dependencies
+If some dependencies are missing during build, you can install them by:
+```bash
+apt-get install build-essential cmake git
+apt-get install libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxext-dev
+apt-get install libopencv-dev
+apt-get install libboost-all-dev    # for mLib
+```
+
+### Missing libstdc++.so.6
+If you encounter missing libstdc++.so.6 error in conda environment, try this:
+
+Add this line to your .bashrc or .zshrc
+```
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6
+```
 
 ## Other notes
 
