@@ -21,24 +21,32 @@ public:
     ~RenderEngine() {
         delete egl_ctx;
     }
-
-    // Setup mesh
-    void setupMesh(std::string mesh_path) {
+    void loadMesh(std::string mesh_path) {
         meshdata = new ml::MeshDataf();
         ml::MeshIOf::loadFromPLY(mesh_path, *meshdata);
         std::cout << "Loaded mesh:" << *meshdata << std::endl;
+    }
+
+    // Setup mesh
+    void copyMesh() {
         gl_mesh = new opengl::GLSemanticMesh();
-        ml::TriMeshf mesh(*meshdata);
-        auto& verts = mesh.getVertices();
+        trimesh = new ml::TriMeshf(*meshdata);
+        auto& verts = trimesh->getVertices();
         for (int i = 0; i < verts.size(); i++) {
             gl_mesh->addVertex(verts[i].position.x, verts[i].position.y, verts[i].position.z);
             gl_mesh->addVertexColor(verts[i].color.r, verts[i].color.g, verts[i].color.b, verts[i].color.a);
             gl_mesh->addVertexSemantic(0);
         }
-        for (auto& f: mesh.getIndices()) {
+        for (auto& f: trimesh->getIndices()) {
             gl_mesh->addFaceIndice(f.x, f.y, f.z);
         }
         gl_mesh->setupGLBuffer();
+        std::cout << "Copy mesh to GPU: " << verts.size() << " vertices, " << trimesh->getIndices().size() << " faces" << std::endl;
+    }
+
+    void setupMesh(std::string mesh_path) {
+        loadMesh(mesh_path);
+        copyMesh();
     }
 
     void setupCamera(
@@ -126,6 +134,7 @@ public:
 private:
     opengl::ContextManager* egl_ctx;
     ml::MeshDataf* meshdata;
+    ml::TriMeshf* trimesh;
     opengl::GLSemanticMesh* gl_mesh;
     opengl::GLSemanticRenderer* gl_renderer;
     opt::CameraWrapper* camera;

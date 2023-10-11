@@ -23,6 +23,8 @@ PYBIND11_MODULE(renderpy, m) {
     )pbdoc";\
     py::class_<RenderEngine>(m, "Render")
         .def(py::init<>())
+        .def("loadMesh", &RenderEngine::loadMesh)
+        .def("copyMesh", &RenderEngine::copyMesh)
         .def("setupMesh", &RenderEngine::setupMesh)
         .def("setupCamera", &RenderEngine::setupCamera)
         .def("renderAll", &RenderEngine::renderAll);
