@@ -5,7 +5,6 @@
 
 #include "opengl/opengl.h"
 #include "opengl/opengl_semantic.h"
-#include "opt/image.h"
 #include "opt/camera.h"
 
 namespace py = pybind11;

@@ -17,7 +17,6 @@ link_directories(${OPENGL_LIBRARY_DIRS})
 
 # Glog
 add_subdirectory(thirdparty/glog-0.4.0)
-# find_package(Glog 0.3.4 REQUIRED)
 
 # OpenCV
 find_package(OpenCV REQUIRED)
@@ -64,7 +63,6 @@ include_directories(
 
 set(ALL_LIBS
     ${OpenCV_LIBS}
-    # ${GLEW_LIBRARIES}
     GLEW_1130
     OpenGL::OpenGL
     OpenGL::EGL
@@ -74,12 +72,8 @@ set(ALL_LIBS
 )
 
 set(ALL_SRC
-    # src/mesh_utils/mesh.cpp
     src/opengl/egl.cpp
     src/opengl/opengl.cpp
-    src/opt/image.cpp
-    # src/opt/optimizer.cpp
-    # src/opt/evaluate.cpp
 
     thirdparty/eth3d-pipeline/src/camera/camera_base.cc
     thirdparty/eth3d-pipeline/src/camera/camera_thin_prism.cc
