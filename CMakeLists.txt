@@ -16,7 +16,8 @@ include_directories(${OPENGL_INCLUDE_DIRS})
 link_directories(${OPENGL_LIBRARY_DIRS})
 
 # Glog
-find_package(Glog 0.3.4 REQUIRED)
+add_subdirectory(thirdparty/glog-0.4.0)
+# find_package(Glog 0.3.4 REQUIRED)
 
 # OpenCV
 find_package(OpenCV REQUIRED)
