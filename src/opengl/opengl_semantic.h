@@ -541,7 +541,7 @@ public:
         glReadBuffer(GL_COLOR_ATTACHMENT0);
         glPixelStorei(GL_PACK_ALIGNMENT, 1);
         glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, rgb_image.data);
-        cv::cvtColor(rgb_image, rgb_image, cv::COLOR_RGB2BGR);
+        // cv::cvtColor(rgb_image, rgb_image, cv::COLOR_RGB2BGR);
 
         glReadBuffer(GL_COLOR_ATTACHMENT1);
         glPixelStorei(GL_PACK_ALIGNMENT, 1);
