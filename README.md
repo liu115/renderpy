@@ -37,6 +37,13 @@ near = 0.05
 far = 20.0
 rgb, depth, vert_indices = render_engine.renderAll(world_to_camera, near, far)
 ```
+### Explanation
+
+`render_engine.renderAll` render RGB, depth, and corresponding vertex indices of the mesh
+
+* rgb: np.ndarray (height, width, 3) uint8
+* depth: np.ndarray (height, width) float32. Pixels with value 0.0 means no depth
+* vertex_indices: np.ndarray (height, width) int32. Each pixel represent the three vertex indices in the mesh during rendering. Useful for 2D-3D back projection. Pixels with value -1 means no vertex
 
 ## Common issues
 
