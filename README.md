@@ -56,6 +56,8 @@ apt-get install build-essential cmake git
 apt-get install libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxext-dev
 # OpenCV
 apt-get install libopencv-dev
+# If missing gflags
+apt-get install libgflags-dev
 apt-get install libboost-all-dev    # for mLib
 ```
 
