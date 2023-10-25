@@ -67,6 +67,12 @@ Add this line to your .bashrc or .zshrc
 export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6
 ```
 
+### fatal error: filesystem: No such file or directory
+
+This is because before gcc/g++ 9, it should be `#include <experimental/filesystem>` instead (see [reference](https://stackoverflow.com/questions/33149878/experimentalfilesystem-linker-error?fbclid=IwAR0LKMp-P6RQTJ-amZ8fQypdyKcK5UGHXPjfnjEjO10gqaCrFNLek490xHo)).
+You can fixed it by replace all the `#include <filesystem>` with `#include <experimental/filesystem>` and add `link_libraries(stdc++fs)` in **CMakeLists.txt**
+
+
 ## Other notes
 
 Currently, the `thirdparty/eigen-3.4.0/Eigen` has been modified:
