@@ -19,6 +19,12 @@ public:
         }   // Try initializing opengl
     }
     ~RenderEngine() {
+        // Free all resources
+        delete meshdata;
+        delete trimesh;
+        delete gl_mesh;
+        delete gl_renderer;
+        delete camera;
         delete egl_ctx;
     }
     void loadMesh(std::string mesh_path) {
