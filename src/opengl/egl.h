@@ -1,4 +1,4 @@
-/*  
+/*
     https://developer.nvidia.com/blog/egl-eye-opengl-visualization-without-x-server/
 */
 #pragma once
@@ -17,7 +17,7 @@ static const EGLint configAttribs[] = {
         EGL_DEPTH_SIZE, 8,
         EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
         EGL_NONE
-};    
+};
 
 static const int pbufferWidth = 9;
 static const int pbufferHeight = 9;
@@ -27,6 +27,7 @@ static const EGLint pbufferAttribs[] = {
     EGL_HEIGHT, pbufferHeight,
     EGL_NONE,
 };
+
 EGLDisplay initEGL();
 void terminateEGL(EGLDisplay eglDpy);
 
