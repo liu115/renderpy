@@ -138,12 +138,12 @@ public:
     // TODO: Render Semantic
 
 private:
-    opengl::ContextManager* egl_ctx;
-    ml::MeshDataf* meshdata;
-    ml::TriMeshf* trimesh;
-    opengl::GLSemanticMesh* gl_mesh;
-    opengl::GLSemanticRenderer* gl_renderer;
-    opt::CameraWrapper* camera;
+    opengl::ContextManager* egl_ctx = nullptr;
+    ml::MeshDataf* meshdata = nullptr;
+    ml::TriMeshf* trimesh = nullptr;
+    opengl::GLSemanticMesh* gl_mesh = nullptr;
+    opengl::GLSemanticRenderer* gl_renderer = nullptr;
+    opt::CameraWrapper* camera = nullptr;
 
     void writeMat3(cv::Mat& mat, std::string path) {
         // Write 3 channel matrix to file. Binary format. Pixel by pixel.
