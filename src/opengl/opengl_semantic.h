@@ -483,6 +483,9 @@ public:
         glDeleteTextures(1, &indices_texture_);
         glDeleteTextures(1, &weights_texture_);
 	    glDeleteRenderbuffers(1, &depth_buffer_);
+	    delete pinhole_shader_program_;
+        delete opencv_shader_program_;
+        delete fisheye_shader_program_;
     }
 
     void render(GLSemanticMesh& glmesh,
