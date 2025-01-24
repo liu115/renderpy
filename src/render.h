@@ -66,6 +66,9 @@ public:
         py::array_t<float>& distortion_params
         // float distortion_params
     ) {
+        delete gl_renderer;
+        delete camera;
+
         gl_renderer = new opengl::GLSemanticRenderer(height, width);
         camera = new opt::CameraWrapper(
             // height, width, fx, fy, cx, cy, camera_type, distortion_params
