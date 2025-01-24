@@ -106,7 +106,7 @@ private:
 class GLSemanticProgram {
 public:
     GLSemanticProgram() {}
-    GLSemanticProgram(CameraModelType type) {
+    GLSemanticProgram(CameraModelType type) : camera_model(type) {
         // std::cout << "Compile vertex shader:" << std::endl << vertex_shader_program << std::endl;
         vertex_shader_ = glCreateShader(GL_VERTEX_SHADER);
         std::string vertex_shader_program;
